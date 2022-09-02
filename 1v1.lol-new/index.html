@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <title>1v1.LOL</title>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    
+    <!-- Firebase products needed -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-remote-config.js"></script>
+    
+    <script src="js/dependencyLoader.js"></script>
+    <script>
+      function showAds() {}
+      var gameLoaded = false;
+      window.addEventListener("beforeunload", function (e) {
+        if (adsVisible || !gameLoaded || !lockedOccured)
+          return null;
+        var confirmationMessage = 'Are you sure you want to leave? ';
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+      });
+      if (window.location.hash != "#allowAlerts")
+        window.alert = function(e) {console.log(e)};
+    </script>
+    <link rel='shortcut icon' type="image/png" href="img/favicon.png?v2" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+  </head>
+  <body>
+    <canvas id="gameContainer"></canvas>
+    
+    <div id="loader">
+      <img class="logo" src="img/logo.png">
+      
+      <div class="spinner"></div>
+      <div class="progress">
+        <div class="full"></div>
+      </div>
+    </div>
+    
+    <div id="unity-loader-div"></div>
+    
+    <script>
+      var gameJsonUrl = "https://justbuild.nyc3.cdn.digitaloceanspaces.com/NewCI/1v1/Prod/11/3e3a3e7f9b174542bcfb0fd7615b7725/WebGL.json";
+    </script>
+    <script id="unity-loader" src="https://justbuild.nyc3.cdn.digitaloceanspaces.com/NewCI/1v1/Prod/11/3e3a3e7f9b174542bcfb0fd7615b7725/UnityLoader.js"></script>
+  </body>
+</html>
